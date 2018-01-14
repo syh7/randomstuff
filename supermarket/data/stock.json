@@ -1,0 +1,22 @@
+{
+  "Products":[
+    {
+      "barcode":10001,
+      "name":"pot erwten",
+      "cost":1.5,
+      "section":"KW",
+      "onsale":false
+    }
+    ,
+    {
+      "barcode":10001,
+      "name":"pot bonen",
+      "cost":1.5,
+      "section":"KW",
+      "onsale":false
+    }
+  ],
+  "onsale":[
+    "pot erwten"
+  ]
+}
