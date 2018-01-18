@@ -112,7 +112,7 @@ class Railroads:
         p.changeMoney(self.price/2)
         self.mortgaged[index] = True
 
-    def own(self, road, p):
+    def buy(self, road, p):
         index = self.roads.index(road)
         if self.owners[index] != "":
             print(p.getName() + " tried to buy " + road + " even though it's owned by " + self.owners[index])
@@ -129,7 +129,7 @@ class Railroads:
         rent = 12.5  # this is 12.5 because we will do x2 at least once, but the lowest price is 25
         for x in self.owners:
             if x == owner:
-                rent *= 2
+                rent = 2*rent
         return rent
 
     def __init__(self):
@@ -156,7 +156,15 @@ class Utilities:
         p.changeMoney(self.price / 2)
         self.mortgaged[index] = True
 
-    def own(self, road, p):
+    def getRoad(self, number):
+        if number == 12:
+            return self.roads[0]
+        elif number == 28:
+            return self.roads[1]
+        else:
+            raise ValueError
+
+    def buy(self, road, p):
         index = self.roads.index(road)
         if self.owners[index] != "":
             print(p.getName() + " tried to buy " + road + " even though it's owned by " + self.owners[index])
@@ -164,7 +172,7 @@ class Utilities:
         self.owners[index] = p.getName()
         p.changeMoney(-self.price)
 
-    def getRent(self, road, name):
+    def getMultiplier(self, road, name):
         index = self.roads.index(road)
         owner = self.owners[index]
         # you don't pay rent for your own property

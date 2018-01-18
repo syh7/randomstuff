@@ -8,8 +8,8 @@ game = True  # boolean to check if game is running
 doubles = 0  # amount of double throws in a row
 parking = 0  # amount on free parking
 players = []  # list of players
-utilities = positions.Utilities  # object for utilities
-railroads = positions.Railroads  # object for railroads
+utilities = positions.Utilities()  # object for utilities
+railroads = positions.Railroads()  # object for railroads
 
 
 def throwDice():
@@ -29,7 +29,9 @@ def moveClosestRail(p):
     else:
         print("chance card at a no change card road")
         raise ValueError
-    road = railroads.getRoad(p.getPos())
+
+    position = p.getPos()
+    road = railroads.getRoad(position)
     rent = 2*railroads.getRent(road, p.getName())  # double price because chance card
     print(p.getName() + " has to pay " + repr(rent) + " rent.")
     p.changeMoney(-rent)
@@ -154,7 +156,12 @@ def getParking(p):
 
 
 def onUtility(p):
-    # TODO: implement utilities
+    global utilities
+    road = utilities.getRoad(p.getPos())
+    multiplier = utilities.getMultiplier(road, p.getName())
+    rent = multiplier * (dice[0] + dice[1])
+    print(p.getName() + " has to pay " + repr(rent) + " rent.")
+    p.changeMoney(-rent)
     return
 
 
@@ -172,7 +179,6 @@ def turn(p):
 
     # Player is not in jail, thus regular throw.
     global doubles
-    doubles = 0
     dice[0] = throwDice()
     dice[1] = throwDice()
     if dice[0] == dice[1]:
@@ -183,11 +189,14 @@ def turn(p):
     p.changePos(dice[0] + dice[1])
     # Three doubles in a row is to jail
     if doubles == 3:
+        doubles = 0
         p.jail()
     handlePosition(p)
 
 
 def handlePosition(p):
+    # TODO: implement buying stuff
+    # TODO: regular deeds
     position = p.getPos()
     if position == positions.GOTOJAIL_POS:
         p.jail()
@@ -212,4 +221,5 @@ while game:
         turn(pla)
         while doubles > 0:
             turn(pla)
-    time.sleep(0.5)
+        doubles = 0
+        time.sleep(0.5)
