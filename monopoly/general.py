@@ -18,9 +18,21 @@ def moveClosestRail(p):
     position = p.getPos()
 
 
-def repairs(p):
-    global players
-    # TODO: implement repairs
+def repairs(p, houseCost, hotelCost):
+    total = 0
+    housetotal = 0
+    hoteltotal = 0
+    for deed in p.getDeeds():
+        houses = deed.getHouses()
+        if houses == 5:
+            total += hotelCost
+            hoteltotal += 1
+        else:
+            total += houses*houseCost
+            housetotal += houses
+    print(p.getName() + " has to pay " + repr(total) + " for " + repr(housetotal) + " houses and " + repr(hoteltotal) +
+          " hotels.")
+    p.changeMoney(-total)
 
 
 def getChance(p):
@@ -44,7 +56,7 @@ def getChance(p):
         if position - 3 == 0:
             p.changeMoney(200)
     elif card == cards.Chance.REPAIRS:
-        repairs(p)
+        repairs(p, 25, 100)
     elif card == cards.Chance.TAX:
         p.changeMoney(-15)
         parking += 15
@@ -107,7 +119,7 @@ def getCommunity(p):
     elif card == cards.Community.CONSULT:
         p.changeMoney(25)
     elif card == cards.Community.REPAIRS:
-        repairs(p)
+        repairs(p, 45, 115)
     elif card == cards.Community.BEAUTY:
         p.changeMoney(10)
     elif card == cards.Community.HERITAGE:
@@ -125,9 +137,8 @@ def getParking(p):
 
 
 def turn(p):
-    global doubles
+    # If the player is jailed, no chance to do anything but get out of jail.
     if p.isJailed():
-
         dice[0] = throwDice()
         dice[1] = throwDice()
         print(p.getName() + " threw " + repr(dice[0]) + " and " + repr(dice[1]))
@@ -137,6 +148,8 @@ def turn(p):
             p.updateJailedThrows()
         return
 
+    # Player is not in jail, thus regular throw.
+    global doubles
     doubles = 0
     dice[0] = throwDice()
     dice[1] = throwDice()
@@ -171,4 +184,4 @@ p1.setName("p1")
 while game:
     turn(p1)
     handlePosition(p1)
-    # time.sleep(1)
+    time.sleep(0.5)
