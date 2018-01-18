@@ -28,7 +28,7 @@ def repairs(p, houseCost, hotelCost):
             total += hotelCost
             hoteltotal += 1
         else:
-            total += houses*houseCost
+            total += houses * houseCost
             housetotal += houses
     print(p.getName() + " has to pay " + repr(total) + " for " + repr(housetotal) + " houses and " + repr(hoteltotal) +
           " hotels.")
@@ -181,7 +181,12 @@ def handlePosition(p):
 
 p1 = player
 p1.setName("p1")
+players.append(p1)
 while game:
-    turn(p1)
-    handlePosition(p1)
+    for p in players:
+        turn(p1)
+        handlePosition(p1)
+        while doubles > 0:
+            turn(p1)
+            handlePosition(p1)
     time.sleep(0.5)
