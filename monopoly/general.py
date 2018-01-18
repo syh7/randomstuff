@@ -8,6 +8,8 @@ game = True  # boolean to check if game is running
 doubles = 0  # amount of double throws in a row
 parking = 0  # amount on free parking
 players = []  # list of players
+utilities = positions.Utilities  # object for utilities
+railroads = positions.Railroads  # object for railroads
 
 
 def throwDice():
@@ -15,7 +17,22 @@ def throwDice():
 
 
 def moveClosestRail(p):
+    global railroads
     position = p.getPos()
+    # switch on chance places
+    if position == 7:
+        p.setPos(5)
+    elif position == 22:
+        p.setPos(25)
+    elif position == 36:
+        p.setPos(35)
+    else:
+        print("chance card at a no change card road")
+        raise ValueError
+    road = railroads.getRoad(p.getPos())
+    rent = 2*railroads.getRent(road, p.getName())  # double price because chance card
+    print(p.getName() + " has to pay " + repr(rent) + " rent.")
+    p.changeMoney(-rent)
 
 
 def repairs(p, houseCost, hotelCost):
@@ -23,13 +40,13 @@ def repairs(p, houseCost, hotelCost):
     housetotal = 0
     hoteltotal = 0
     for deed in p.getDeeds():
-        houses = deed.getHouses()
-        if houses == 5:
+        nrOfHouses = deed.getHouses()
+        if nrOfHouses == 5:
             total += hotelCost
             hoteltotal += 1
         else:
-            total += houses * houseCost
-            housetotal += houses
+            total += nrOfHouses * houseCost
+            housetotal += nrOfHouses
     print(p.getName() + " has to pay " + repr(total) + " for " + repr(housetotal) + " houses and " + repr(hoteltotal) +
           " hotels.")
     p.changeMoney(-total)
@@ -136,6 +153,11 @@ def getParking(p):
     parking = 0
 
 
+def onUtility(p):
+    # TODO: implement utilities
+    return
+
+
 def turn(p):
     # If the player is jailed, no chance to do anything but get out of jail.
     if p.isJailed():
@@ -162,6 +184,7 @@ def turn(p):
     # Three doubles in a row is to jail
     if doubles == 3:
         p.jail()
+    handlePosition(p)
 
 
 def handlePosition(p):
@@ -177,16 +200,16 @@ def handlePosition(p):
         getCommunity(p)
     elif position == positions.PARKING_POS:
         getParking(p)
+    elif position in positions.UTILITIES_POS:
+        onUtility(p)
 
 
 p1 = player
 p1.setName("p1")
 players.append(p1)
 while game:
-    for p in players:
-        turn(p1)
-        handlePosition(p1)
+    for pla in players:
+        turn(pla)
         while doubles > 0:
-            turn(p1)
-            handlePosition(p1)
+            turn(pla)
     time.sleep(0.5)

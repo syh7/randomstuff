@@ -84,10 +84,22 @@ class Deed:
         self.mortgaged = False  # see if the property is mortgaged, in which case players won't pay for rent
 
 
-class Railroad:
+class Railroads:
 
     def getOwner(self, road):
         return self.owners[self.roads.index(road)]
+
+    def getRoad(self, number):
+        if number == 5:
+            return self.roads[0]
+        elif number == 15:
+            return self.roads[1]
+        elif number == 25:
+            return self.roads[2]
+        elif number == 35:
+            return self.roads[3]
+        else:
+            raise ValueError
 
     def mortgage(self, road, p):
         index = self.roads.index(road)
@@ -128,7 +140,7 @@ class Railroad:
         self.price = 200
 
 
-class Utility:
+class Utilities:
 
     def getOwner(self, road):
         return self.owners[self.roads.index(road)]
