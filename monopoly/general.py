@@ -118,15 +118,19 @@ def getCommunity(p):
     elif card == cards.Community.STOCK:
         p.changeMoney(50)
     elif card == cards.Community.OPERA:
-        return
-        # TODO: implement opera
+        global players
+        for pl in players:
+            pl.changeMoney(-50)
+        p.changeMoney(50 * len(players))
     elif card == cards.Community.XMAS:
         p.changeMoney(100)
     elif card == cards.Community.TAX:
         p.changeMoney(20)
     elif card == cards.Community.BIRTHDAY:
-        return
-        # TODO: implement birthday
+        global players
+        for pl in players:
+            pl.changeMoney(-20)
+        p.changeMoney(20 * len(players))
     elif card == cards.Community.INSURANCE:
         p.changeMoney(100)
     elif card == cards.Community.HOSPITAL:
@@ -186,11 +190,12 @@ def turn(p):
     else:
         doubles = 0
     print(p.getName() + " threw " + repr(dice[0] + dice[1]) + " with " + repr(doubles) + " doubles in a row.")
-    p.changePos(dice[0] + dice[1])
     # Three doubles in a row is to jail
     if doubles == 3:
         doubles = 0
         p.jail()
+    else:
+        p.changePos(dice[0] + dice[1])
     handlePosition(p)
 
 
@@ -222,4 +227,3 @@ while game:
         while doubles > 0:
             turn(pla)
         doubles = 0
-        time.sleep(0.5)
