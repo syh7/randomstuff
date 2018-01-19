@@ -32,7 +32,7 @@ class Community(Enum):
     OPERA = 'Grand Opera Night. Collect €50 from every player for opening night seats.'
     XMAS = 'Holiday fund matures. Collect €100.'
     TAX = 'Income tax refund. Collect €20.'
-    BIRTHDAY = 'It\'s your birthday today! All other players will give you 20 bucks.'
+    BIRTHDAY = 'It\'s your birthday today! All other players will give you €20.'
     INSURANCE = 'Life insurance matures. Collect €100.'
     HOSPITAL = 'Pay hospital fees of €100.'
     SCHOOL = 'Pay school fees of €150.'
