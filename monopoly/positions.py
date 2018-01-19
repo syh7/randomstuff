@@ -14,14 +14,12 @@ class Deed:
     def addHouse(self, p):
         if self.houses == 5:
             print(p.getName() + " tried to upgrade his property but it's full already.")
-            return
+            raise ValueError
         if self.houses == 4:
-            print(p.getName() + " bought a hotel on deed " + repr(self.number) + "for the cost of " + repr(
-                self.hotelCost))
+            print(p.getName() + " bought a hotel on deed " + repr(self.number) + "for the cost of " + repr(self.hotelCost))
             p.changeMoney(-self.hotelCost)
         else:
-            print(p.getName() + " bought a house on deed " + repr(self.number) + "for the cost of " + repr(
-                self.houseCost))
+            print(p.getName() + " bought a house on deed " + repr(self.number) + "for the cost of " + repr(self.houseCost))
             p.changeMoney(-self.houseCost)
         self.houses += 1
 
@@ -41,8 +39,8 @@ class Deed:
         return self.houses
 
     def getRent(self, name):
-        # you don;t pay rent for your own property or when it's mortgaged
-        if self.mortgaged or name == self.owner:
+        # you don't pay rent for your own property or when it's mortgaged
+        if self.isMortgaged or name == self.owner:
             return 0
         else:
             return self.rent[self.houses]
@@ -51,52 +49,75 @@ class Deed:
         if self.houses > 0:
             print("can't bankrupt if you still have houses left")
             raise NotImplementedError
-        if self.mortgaged:
+        if self.isMortgaged:
             print("can't mortgage twice")
             raise NotImplementedError
-        self.mortgaged = True
-        p.changeMoney(self.price / 2)
+        self.isMortgaged = True
+        p.changeMoney(self.mortgageCost)
 
     def unmortgage(self, p):
-        if not self.mortgaged:
+        if not self.isMortgaged:
             print("You can't mortgage deed " + repr(self.number) + " without mortgaging it first.")
             raise NotImplementedError
-        self.mortgaged = False
-        p.changeMoney(-self.price)
+        self.isMortgaged = False
+        p.changeMoney(-self.mortgageCost*1.1)
 
     def getPrice(self):
         return self.price
 
+    def getMortgaged(self):
+        return self.isMortgaged
+
     def setOwner(self, newowner):
         self.owner = newowner
+
+    def getNumber(self):
+        return self.number
 
     def getOwner(self):
         return self.owner
 
-    def __init__(self, number, rent, price, houseCost, hotelCost):
+    def __init__(self, number, name, rent, price, mortgageCost, houseCost, hotelCost):
         self.number = number  # id number
+        self.name = name  # name of road
+        self.mortgageCost = mortgageCost  # money received when isMortgaged
         self.rent = rent  # array with cost for different housing
         self.price = price  # how much the deed costs
         self.houseCost = houseCost  # cost of adding a house
         self.hotelCost = hotelCost  # cost of upgrading to a hotel
         self.houses = 0  # number of houses
         self.owner = ""  # which player owns the property
-        self.mortgaged = False  # see if the property is mortgaged, in which case players won't pay for rent
+        self.isMortgaged = False  # see if the property is isMortgaged, in which case players won't pay for rent
 
 
 class Railroads:
 
-    def getOwner(self, road):
+    def getOwnerByName(self, road):
         return self.owners[self.roads.index(road)]
 
-    def getRoad(self, number):
-        if number == 5:
+    def getOwnerByPosition(self, pos):
+        if pos == 5:
+            return self.owners[0]
+        elif pos == 15:
+            return self.owners[1]
+        elif pos == 25:
+            return self.owners[2]
+        elif pos == 35:
+            return self.owners[3]
+        else:
+            raise ValueError
+
+    def getRoadByName(self, road):
+        return self.roads.index(road)
+
+    def getRoadByPosition(self, pos):
+        if pos == 5:
             return self.roads[0]
-        elif number == 15:
+        elif pos == 15:
             return self.roads[1]
-        elif number == 25:
+        elif pos == 25:
             return self.roads[2]
-        elif number == 35:
+        elif pos == 35:
             return self.roads[3]
         else:
             raise ValueError
@@ -134,7 +155,7 @@ class Railroads:
 
     def __init__(self):
         self.owners = ["", "", "", ""]  # list for owners of respective places
-        self.roads = ["Reading Railroad", "Pennsylvania RailRoad", "B&O Railroad", "Short Line"]
+        self.roads = ["King's Cross Station", "Marylebone Station", "Fenchurch St Station", "Liverpool Street Station"]
         self.mortgaged = [False, False, False, False]
         self.numbers = [5, 15, 25, 35]
         self.price = 200
@@ -185,7 +206,7 @@ class Utilities:
 
     def __init__(self):
         self.owners = ["", ""]  # list for owners of respective places
-        self.roads = ["Water Works", "Electric Company"]
+        self.roads = ["Electric Company", "Water Works"]
         self.mortgaged = [False, False]
         self.numbers = [12, 28]
         self.price = 150

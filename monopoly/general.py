@@ -10,10 +10,45 @@ parking = 0  # amount on free parking
 players = []  # list of players
 utilities = positions.Utilities()  # object for utilities
 railroads = positions.Railroads()  # object for railroads
+deeds = []  # list for all properties
 
 
 def throwDice():
     return random.randint(1, 3)
+
+
+def makeDeeds():
+    global deeds
+    deeds.append(positions.Deed(1, "Old Kent Road", {2, 10, 30, 90, 160, 250}, 60, 50, 30, 30))
+    deeds.append(positions.Deed(3, "Whitechapel Road", {4, 20, 60, 180, 360, 450}, 60, 50, 30, 30))
+    deeds.append(positions.Deed(6, "The Angel Islington", {6, 30, 90, 270, 400, 550}, 100, 50, 50, 50))
+    deeds.append(positions.Deed(8, "Euston Road", {6, 30, 90, 270, 400, 550}, 100, 50, 50, 50))
+    deeds.append(positions.Deed(9, "Pentonville Road", {8, 40, 100, 300, 450, 600}, 120, 60, 50, 50))
+    deeds.append(positions.Deed(11, "Pall Mall", {10, 50, 150, 450, 625, 750}, 140, 70, 100, 100))
+    deeds.append(positions.Deed(13, "Whitehall", {10, 50, 150, 450, 625, 750}, 140, 70, 100, 100))
+    deeds.append(positions.Deed(14, "Northumberland Avenue", {12, 60, 180, 500, 700, 900}, 160, 80, 100, 100))
+    deeds.append(positions.Deed(16, "Bow Street", {14, 70, 200, 550, 750, 950}, 180, 90, 100, 100))
+    deeds.append(positions.Deed(18, "Marlborough Street", {14, 70, 200, 550, 750, 950}, 180, 90, 100, 100))
+    deeds.append(positions.Deed(19, "Vine Street", {16, 80, 220, 600, 800, 1000}, 200, 100, 100, 100))
+    deeds.append(positions.Deed(21, "Strand", {18, 90, 250, 700, 875, 1050}, 220, 110, 150, 150))
+    deeds.append(positions.Deed(23, "Fleet Street", {18, 90, 250, 700, 875, 1050}, 220, 110, 150, 150))
+    deeds.append(positions.Deed(24, "Trafalgar Square", {20, 100, 300, 750, 925, 1100}, 240, 120, 150, 150))
+    deeds.append(positions.Deed(26, "Leicester Square", {22, 110, 330, 800, 975, 1150}, 260, 130, 150, 150))
+    deeds.append(positions.Deed(28, "Coventry Street", {22, 110, 330, 800, 975, 1150}, 260, 130, 150, 150))
+    deeds.append(positions.Deed(29, "Piccadilly", {24, 120, 360, 850, 1025, 1200}, 280, 140, 150, 150))
+    deeds.append(positions.Deed(31, "Regent Street", {26, 130, 390, 900, 1100, 1275}, 300, 150, 200, 200))
+    deeds.append(positions.Deed(33, "Oxford Street", {26, 130, 390, 900, 1100, 1275}, 300, 150, 200, 200))
+    deeds.append(positions.Deed(34, "Bond Street", {28, 150, 450, 1000, 1200, 1400}, 320, 160, 200, 200))
+    deeds.append(positions.Deed(37, "Park Lane", {35, 175, 500, 1100, 1300, 1500}, 350, 175, 200, 200))
+    deeds.append(positions.Deed(39, "Mayfair", {50, 200, 600, 1400, 1700, 2000}, 400, 200, 200, 200))
+
+
+def getDeedByNumber(number):
+    global deeds
+    for deed in deeds:
+        if deed.getNumber() == number:
+            return deed
+    raise FileNotFoundError
 
 
 def moveClosestRail(p):
@@ -32,7 +67,7 @@ def moveClosestRail(p):
 
     position = p.getPos()
     road = railroads.getRoad(position)
-    rent = 2*railroads.getRent(road, p.getName())  # double price because chance card
+    rent = 2 * railroads.getRent(road, p.getName())  # double price because chance card
     print(p.getName() + " has to pay " + repr(rent) + " rent.")
     p.changeMoney(-rent)
 
@@ -159,7 +194,7 @@ def getParking(p):
     parking = 0
 
 
-def onUtility(p):
+def payUtility(p):
     global utilities
     road = utilities.getRoad(p.getPos())
     multiplier = utilities.getMultiplier(road, p.getName())
@@ -167,6 +202,22 @@ def onUtility(p):
     print(p.getName() + " has to pay " + repr(rent) + " rent.")
     p.changeMoney(-rent)
     return
+
+
+def payDeed(p):
+    position = p.getPos()
+    deed = getDeedByNumber(position)
+    owner = deed.getOwner()
+    if owner == p.getName() or deed.getMortgaged():
+        return
+    rent = deed.getRent(p.getName())
+    p.changeMoney(-rent)
+    global players
+    for pl in players:
+        if pl.getName() == owner:
+            pl.changeMoney(rent)
+            return
+    raise ValueError
 
 
 def turn(p):
@@ -199,9 +250,15 @@ def turn(p):
     handlePosition(p)
 
 
+def getPlayer(name):
+    global players
+    for pl in players:
+        if pl.getName() == name:
+            return pl
+    raise LookupError
+
+
 def handlePosition(p):
-    # TODO: implement buying stuff
-    # TODO: regular deeds
     position = p.getPos()
     if position == positions.GOTOJAIL_POS:
         p.jail()
@@ -215,9 +272,13 @@ def handlePosition(p):
     elif position == positions.PARKING_POS:
         getParking(p)
     elif position in positions.UTILITIES_POS:
-        onUtility(p)
+        payUtility(p)
+    else:
+        payDeed(p)
+        # TODO: implement buying stuff
 
 
+makeDeeds()
 p1 = player
 p1.setName("p1")
 players.append(p1)
