@@ -1,5 +1,5 @@
 position = 0
-money = 1000
+money = 1500
 jailed = False
 jailedThrows = 0
 name = ""

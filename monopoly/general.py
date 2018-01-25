@@ -51,6 +51,27 @@ def getDeedByNumber(number):
     raise FileNotFoundError
 
 
+def checkStreet(deed):
+    global deeds
+    if deed.getNumber() in {1, 3}:
+        return getDeedByNumber(1).getOwner() == getDeedByNumber(3).getOwner()
+    elif deed.getNumber() in {6, 8, 9}:
+        return getDeedByNumber(6).getOwner() == getDeedByNumber(8).getOwner() == getDeedByNumber(9).getOwner()
+    elif deed.getNumber() in {11, 13, 14}:
+        return getDeedByNumber(11).getOwner() == getDeedByNumber(13).getOwner() == getDeedByNumber(14).getOwner()
+    elif deed.getNumber() in {16, 18, 19}:
+        return getDeedByNumber(16).getOwner() == getDeedByNumber(18).getOwner() == getDeedByNumber(19).getOwner()
+    elif deed.getNumber() in {21, 23, 24}:
+        return getDeedByNumber(21).getOwner() == getDeedByNumber(23).getOwner() == getDeedByNumber(24).getOwner()
+    elif deed.getNumber() in {26, 28, 29}:
+        return getDeedByNumber(26).getOwner() == getDeedByNumber(28).getOwner() == getDeedByNumber(29).getOwner()
+    elif deed.getNumber() in {31, 33, 34}:
+        return getDeedByNumber(31).getOwner() == getDeedByNumber(33).getOwner() == getDeedByNumber(34).getOwner()
+    elif deed.getNumber() in {37, 39}:
+        return getDeedByNumber(37).getOwner() == getDeedByNumber(39).getOwner()
+    raise FileNotFoundError
+
+
 def moveClosestRail(p):
     global railroads
     position = p.getPos()
@@ -211,6 +232,9 @@ def payDeed(p):
     if owner == p.getName() or deed.getMortgaged():
         return
     rent = deed.getRent(p.getName())
+    if deed.getHouses() == 0:
+        if checkStreet(deed):
+            rent *= 2
     p.changeMoney(-rent)
     global players
     for pl in players:
@@ -275,7 +299,7 @@ def handlePosition(p):
         payUtility(p)
     else:
         payDeed(p)
-        # TODO: implement buying stuff
+        # TODO: implement buying stuff (auction if no interest - includes original player)
 
 
 makeDeeds()

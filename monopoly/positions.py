@@ -28,11 +28,11 @@ class Deed:
             print(p.getName() + " tried to sell a house on deed " + repr(self.number) + " which doesn't have houses.")
             raise ValueError
         if self.houses == 5:
-            print(p.getName() + " sold a hotel for and got: " + repr(self.hotelCost))
-            p.changeMoney(self.hotelCost / 2)
+            print(p.getName() + " sold a hotel for and got: " + repr(self.hotelCost/2))
+            p.changeMoney(self.hotelCost/2)
         else:
-            print(p.getName() + " sold a house for and got: " + repr(self.houseCost))
-            p.changeMoney(self.houseCost / 2)
+            print(p.getName() + " sold a house for and got: " + repr(self.houseCost/2))
+            p.changeMoney(self.houseCost/2)
         self.houses -= 1
 
     def getHouses(self):
