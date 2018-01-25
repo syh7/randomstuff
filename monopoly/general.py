@@ -1,5 +1,5 @@
 import random, time
-from monopoly import player, positions, cards
+from monopoly import player, positions, cards, Gui
 
 BOARD_SIZE = 40
 
@@ -156,7 +156,7 @@ def getChance(p):
 
 
 def getCommunity(p):
-    global parking
+    global parking, players
     card = random.choice(list(cards.Community))
     print("community card: " + card.value)
     if card == cards.Community.START:
@@ -183,7 +183,6 @@ def getCommunity(p):
     elif card == cards.Community.TAX:
         p.changeMoney(20)
     elif card == cards.Community.BIRTHDAY:
-        global players
         for pl in players:
             pl.changeMoney(-20)
         p.changeMoney(20 * len(players))
@@ -227,6 +226,7 @@ def payUtility(p):
 
 def payDeed(p):
     position = p.getPos()
+
     deed = getDeedByNumber(position)
     owner = deed.getOwner()
     if owner == p.getName() or deed.getMortgaged():
@@ -306,6 +306,9 @@ makeDeeds()
 p1 = player
 p1.setName("p1")
 players.append(p1)
+
+gui = Gui
+
 while game:
     for pla in players:
         turn(pla)
