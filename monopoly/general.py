@@ -19,28 +19,28 @@ def throwDice():
 
 def makeDeeds():
     global deeds
-    deeds.append(positions.Deed(1, "Old Kent Road", {2, 10, 30, 90, 160, 250}, 60, 50, 30, 30))
-    deeds.append(positions.Deed(3, "Whitechapel Road", {4, 20, 60, 180, 360, 450}, 60, 50, 30, 30))
-    deeds.append(positions.Deed(6, "The Angel Islington", {6, 30, 90, 270, 400, 550}, 100, 50, 50, 50))
-    deeds.append(positions.Deed(8, "Euston Road", {6, 30, 90, 270, 400, 550}, 100, 50, 50, 50))
-    deeds.append(positions.Deed(9, "Pentonville Road", {8, 40, 100, 300, 450, 600}, 120, 60, 50, 50))
-    deeds.append(positions.Deed(11, "Pall Mall", {10, 50, 150, 450, 625, 750}, 140, 70, 100, 100))
-    deeds.append(positions.Deed(13, "Whitehall", {10, 50, 150, 450, 625, 750}, 140, 70, 100, 100))
-    deeds.append(positions.Deed(14, "Northumberland Avenue", {12, 60, 180, 500, 700, 900}, 160, 80, 100, 100))
-    deeds.append(positions.Deed(16, "Bow Street", {14, 70, 200, 550, 750, 950}, 180, 90, 100, 100))
-    deeds.append(positions.Deed(18, "Marlborough Street", {14, 70, 200, 550, 750, 950}, 180, 90, 100, 100))
-    deeds.append(positions.Deed(19, "Vine Street", {16, 80, 220, 600, 800, 1000}, 200, 100, 100, 100))
-    deeds.append(positions.Deed(21, "Strand", {18, 90, 250, 700, 875, 1050}, 220, 110, 150, 150))
-    deeds.append(positions.Deed(23, "Fleet Street", {18, 90, 250, 700, 875, 1050}, 220, 110, 150, 150))
-    deeds.append(positions.Deed(24, "Trafalgar Square", {20, 100, 300, 750, 925, 1100}, 240, 120, 150, 150))
-    deeds.append(positions.Deed(26, "Leicester Square", {22, 110, 330, 800, 975, 1150}, 260, 130, 150, 150))
-    deeds.append(positions.Deed(28, "Coventry Street", {22, 110, 330, 800, 975, 1150}, 260, 130, 150, 150))
-    deeds.append(positions.Deed(29, "Piccadilly", {24, 120, 360, 850, 1025, 1200}, 280, 140, 150, 150))
-    deeds.append(positions.Deed(31, "Regent Street", {26, 130, 390, 900, 1100, 1275}, 300, 150, 200, 200))
-    deeds.append(positions.Deed(33, "Oxford Street", {26, 130, 390, 900, 1100, 1275}, 300, 150, 200, 200))
-    deeds.append(positions.Deed(34, "Bond Street", {28, 150, 450, 1000, 1200, 1400}, 320, 160, 200, 200))
-    deeds.append(positions.Deed(37, "Park Lane", {35, 175, 500, 1100, 1300, 1500}, 350, 175, 200, 200))
-    deeds.append(positions.Deed(39, "Mayfair", {50, 200, 600, 1400, 1700, 2000}, 400, 200, 200, 200))
+    deeds.append(positions.Deed(1, "Old Kent Road", [2, 10, 30, 90, 160, 250], 60, 50, 30, 30))
+    deeds.append(positions.Deed(3, "Whitechapel Road", [4, 20, 60, 180, 360, 450], 60, 50, 30, 30))
+    deeds.append(positions.Deed(6, "The Angel Islington", [6, 30, 90, 270, 400, 550], 100, 50, 50, 50))
+    deeds.append(positions.Deed(8, "Euston Road", [6, 30, 90, 270, 400, 550], 100, 50, 50, 50))
+    deeds.append(positions.Deed(9, "Pentonville Road", [8, 40, 100, 300, 450, 600], 120, 60, 50, 50))
+    deeds.append(positions.Deed(11, "Pall Mall", [10, 50, 150, 450, 625, 750], 140, 70, 100, 100))
+    deeds.append(positions.Deed(13, "Whitehall", [10, 50, 150, 450, 625, 750], 140, 70, 100, 100))
+    deeds.append(positions.Deed(14, "Northumberland Avenue", [12, 60, 180, 500, 700, 900], 160, 80, 100, 100))
+    deeds.append(positions.Deed(16, "Bow Street", [14, 70, 200, 550, 750, 950], 180, 90, 100, 100))
+    deeds.append(positions.Deed(18, "Marlborough Street", [14, 70, 200, 550, 750, 950], 180, 90, 100, 100))
+    deeds.append(positions.Deed(19, "Vine Street", [16, 80, 220, 600, 800, 1000], 200, 100, 100, 100))
+    deeds.append(positions.Deed(21, "Strand", [18, 90, 250, 700, 875, 1050], 220, 110, 150, 150))
+    deeds.append(positions.Deed(23, "Fleet Street", [18, 90, 250, 700, 875, 1050], 220, 110, 150, 150))
+    deeds.append(positions.Deed(24, "Trafalgar Square", [20, 100, 300, 750, 925, 1100], 240, 120, 150, 150))
+    deeds.append(positions.Deed(26, "Leicester Square", [22, 110, 330, 800, 975, 1150], 260, 130, 150, 150))
+    deeds.append(positions.Deed(27, "Coventry Street", [22, 110, 330, 800, 975, 1150], 260, 130, 150, 150))
+    deeds.append(positions.Deed(29, "Piccadilly", [24, 120, 360, 850, 1025, 1200], 280, 140, 150, 150))
+    deeds.append(positions.Deed(31, "Regent Street", [26, 130, 390, 900, 1100, 1275], 300, 150, 200, 200))
+    deeds.append(positions.Deed(32, "Oxford Street", [26, 130, 390, 900, 1100, 1275], 300, 150, 200, 200))
+    deeds.append(positions.Deed(34, "Bond Street", [28, 150, 450, 1000, 1200, 1400], 320, 160, 200, 200))
+    deeds.append(positions.Deed(37, "Park Lane", [35, 175, 500, 1100, 1300, 1500], 350, 175, 200, 200))
+    deeds.append(positions.Deed(39, "Mayfair", [50, 200, 600, 1400, 1700, 2000], 400, 200, 200, 200))
 
 
 def getDeedByNumber(number):
@@ -48,6 +48,7 @@ def getDeedByNumber(number):
     for deed in deeds:
         if deed.getNumber() == number:
             return deed
+    print("can't find number:" + repr(number))
     raise FileNotFoundError
 
 
@@ -63,10 +64,10 @@ def checkStreet(deed):
         return getDeedByNumber(16).getOwner() == getDeedByNumber(18).getOwner() == getDeedByNumber(19).getOwner()
     elif deed.getNumber() in {21, 23, 24}:
         return getDeedByNumber(21).getOwner() == getDeedByNumber(23).getOwner() == getDeedByNumber(24).getOwner()
-    elif deed.getNumber() in {26, 28, 29}:
-        return getDeedByNumber(26).getOwner() == getDeedByNumber(28).getOwner() == getDeedByNumber(29).getOwner()
-    elif deed.getNumber() in {31, 33, 34}:
-        return getDeedByNumber(31).getOwner() == getDeedByNumber(33).getOwner() == getDeedByNumber(34).getOwner()
+    elif deed.getNumber() in {26, 27, 29}:
+        return getDeedByNumber(26).getOwner() == getDeedByNumber(27).getOwner() == getDeedByNumber(29).getOwner()
+    elif deed.getNumber() in {31, 32, 34}:
+        return getDeedByNumber(31).getOwner() == getDeedByNumber(32).getOwner() == getDeedByNumber(34).getOwner()
     elif deed.getNumber() in {37, 39}:
         return getDeedByNumber(37).getOwner() == getDeedByNumber(39).getOwner()
     raise FileNotFoundError
@@ -87,10 +88,14 @@ def moveClosestRail(p):
         raise ValueError
 
     position = p.getPos()
-    road = railroads.getRoad(position)
+    road = railroads.getRoadByPosition(position)
+    owner = railroads.getOwnerByPosition(position)
     rent = 2 * railroads.getRent(road, p.getName())  # double price because chance card
-    print(p.getName() + " has to pay " + repr(rent) + " rent.")
+    print(p.getName() + " has to pay " + repr(rent) + " rent to " + owner + ".")
     p.changeMoney(-rent)
+    if owner == "":
+        return  # TODO: remove after implementing buying
+    getPlayer(owner).changeMoney(rent)
 
 
 def repairs(p, houseCost, hotelCost):
@@ -214,14 +219,25 @@ def getParking(p):
     parking = 0
 
 
+def payStation(p):
+    global railroads
+    station = railroads.getRoadByPosition(p.getPos())
+    rent = railroads.getRent(station, p.getName())
+    p.changeMoney(-rent)
+    getPlayer(railroads.getOwnerByName(station)).changeMoney(rent)  # gorgeous
+
+
 def payUtility(p):
     global utilities
     road = utilities.getRoad(p.getPos())
+    owner = utilities.getOwner(road)
     multiplier = utilities.getMultiplier(road, p.getName())
     rent = multiplier * (dice[0] + dice[1])
     print(p.getName() + " has to pay " + repr(rent) + " rent.")
     p.changeMoney(-rent)
-    return
+    if owner == "":
+        return  # TODO: remove after implementing buying
+    getPlayer(owner).changeMoney(rent)
 
 
 def payDeed(p):
@@ -241,7 +257,7 @@ def payDeed(p):
         if pl.getName() == owner:
             pl.changeMoney(rent)
             return
-    raise ValueError
+    # raise ValueError TODO: add after implementing owners
 
 
 def turn(p):
@@ -276,9 +292,14 @@ def turn(p):
 
 def getPlayer(name):
     global players
+    if name == "":  # TODO: remove after implementing buying stuff
+        return players[0]
     for pl in players:
         if pl.getName() == name:
             return pl
+    print("name: " + name)
+    print("players: ")
+    print(players)
     raise LookupError
 
 
@@ -297,6 +318,12 @@ def handlePosition(p):
         getParking(p)
     elif position in positions.UTILITIES_POS:
         payUtility(p)
+    elif position in positions.STATIONS_POS:
+        payStation(p)
+    elif position == positions.JAIL_POS:
+        print(p.getName() + " is visiting jail.")
+    elif position == positions.START_POS:
+        print(p.getName() + " is on start.")
     else:
         payDeed(p)
         # TODO: implement buying stuff (auction if no interest - includes original player)

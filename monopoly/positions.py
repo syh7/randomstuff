@@ -1,4 +1,5 @@
 # interesting board positions
+START_POS = 0
 JAIL_POS = 10
 PARKING_POS = 20
 GOTOJAIL_POS = 30
