@@ -15,3 +15,6 @@ Repository for random coding ideas. Current ideas:
   - System for employees to order/search/change stock
   - Registers
   - Customers buy stuff, maybe incorporate times of day (dinner, weekends big bulk)?
+
+4. Tournament bracket program
+  - Program that receives information regarding a tournament and returns a list of brackets. 
