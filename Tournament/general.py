@@ -38,20 +38,24 @@ def algorithm():
             if player["category"] == category:
                 cat_players.append(player)
         if cat_players.__len__() > 0:
-            if tour_type == "blind":
-                if stage_type == "group":
-                    cat_players = blindGroups(cat_players)
-                elif stage_type == "knockout":
-                    cat_players = blindKnockout(cat_players)
+            if stage_type == "group":
+                if tour_type == "blind":
+                    shuffle(cat_players)
+                elif tour_type == "seeded":
+                    cat_players.sort(key=itemgetter("strength"))
                 else:
                     raise ValueError
-            elif tour_type == "seed":
-                if stage_type == "group":
-                    cat_players = seededGroups(cat_players)
-                elif stage_type == "knockout":
-                    cat_players = seededKnockout(cat_players)
+                cat_players = makeGroups(cat_players)
+
+            elif stage_type == "knockout":
+                if tour_type == "blind":
+                    shuffle(cat_players)
+                elif tour_type == "seeded":
+                    cat_players.sort(key=itemgetter("strength"))
                 else:
                     raise ValueError
+                cat_players = makeMatches(cat_players)
+
             else:
                 raise ValueError
             # print("cat_players")
@@ -59,8 +63,7 @@ def algorithm():
             placements.append(cat_players)
 
 
-def blindGroups(playerlist):
-    shuffle(playerlist)
+def makeGroups(playerlist):
     length = playerlist.__len__()
     if length % 4 == 0 or length % 4 == 1:
         nrOfGroups = int(length / 4)
@@ -69,19 +72,8 @@ def blindGroups(playerlist):
     return roundRobin(playerlist, nrOfGroups)
 
 
-def seededGroups(playerlist):
-    playerlist.sort(key=itemgetter("strength"))
-    length = playerlist.__len__()
-    if length % 4 == 0 or length % 4 == 1:
-        nrOfGroups = int(length / 4)
-    else:
-        nrOfGroups = int(math.ceil(length / 4))
-    return roundRobin(playerlist, nrOfGroups)
-
-
-def blindKnockout(playerlist):
+def makeMatches(playerlist):
     matches = []
-    shuffle(playerlist)
     length = playerlist.__len__()
     if length % 2 == 1:
         BYE = {'category': playerlist[0]["category"], 'name': 'BYE', 'strength': 100}
@@ -91,18 +83,6 @@ def blindKnockout(playerlist):
         matches.append((playerlist[i], playerlist[-i]))
     return matches
 
-
-def seededKnockout(playerlist):
-    matches = []
-    playerlist.sort(key=itemgetter("strength"))
-    length = playerlist.__len__()
-    if length % 2 == 1:
-        BYE = {'category': playerlist[0]["category"], 'name': 'BYE', 'strength': 100}
-        playerlist.append(BYE)
-        length += 1
-    for i in range(0, length):
-        matches.append((playerlist[i], playerlist[-i]))
-    return matches
 
 
 def roundRobin(playerlist, nrOfGroups):
