@@ -31,7 +31,7 @@ def saveFile():
 
 
 def algorithm():
-    global players, categories, placements, tour_type
+    global players, categories, placements, tour_type, stage_type
     for category in categories:
         cat_players = []
         for player in players:
@@ -39,9 +39,21 @@ def algorithm():
                 cat_players.append(player)
         if cat_players.__len__() > 0:
             if tour_type == "blind":
-                cat_players = blindGroups(cat_players)
+                if stage_type == "group":
+                    cat_players = blindGroups(cat_players)
+                elif stage_type == "knockout":
+                    cat_players = blindKnockout(cat_players)
+                else:
+                    raise ValueError
             elif tour_type == "seed":
-                cat_players = seededGroups(cat_players)
+                if stage_type == "group":
+                    cat_players = seededGroups(cat_players)
+                elif stage_type == "knockout":
+                    cat_players = seededKnockout(cat_players)
+                else:
+                    raise ValueError
+            else:
+                raise ValueError
             # print("cat_players")
             # pprint(cat_players)
             placements.append(cat_players)
@@ -65,6 +77,32 @@ def seededGroups(playerlist):
     else:
         nrOfGroups = int(math.ceil(length / 4))
     return roundRobin(playerlist, nrOfGroups)
+
+
+def blindKnockout(playerlist):
+    matches = []
+    shuffle(playerlist)
+    length = playerlist.__len__()
+    if length % 2 == 1:
+        BYE = {'category': playerlist[0]["category"], 'name': 'BYE', 'strength': 100}
+        playerlist.append(BYE)
+        length += 1
+    for i in range(0, length):
+        matches.append((playerlist[i], playerlist[-i]))
+    return matches
+
+
+def seededKnockout(playerlist):
+    matches = []
+    playerlist.sort(key=itemgetter("strength"))
+    length = playerlist.__len__()
+    if length % 2 == 1:
+        BYE = {'category': playerlist[0]["category"], 'name': 'BYE', 'strength': 100}
+        playerlist.append(BYE)
+        length += 1
+    for i in range(0, length):
+        matches.append((playerlist[i], playerlist[-i]))
+    return matches
 
 
 def roundRobin(playerlist, nrOfGroups):
