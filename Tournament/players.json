@@ -1,0 +1,79 @@
+[
+  {
+    "type":"blind",
+    "categories": [
+      "MS4",
+      "WS4",
+      "MD4",
+      "WD4",
+      "XD4",
+      "MS6",
+      "WS6",
+      "MD6",
+      "WD6",
+      "XD6",
+      "MS7",
+      "WS7",
+      "MD7",
+      "WD7",
+      "SD7",
+      "MS9",
+      "WS9",
+      "MD9",
+      "WD9",
+      "XD9"
+    ],
+    "players": [
+      {
+        "name": "test1",
+        "strength": "9",
+        "category": "MD9"
+      },
+      {
+        "name": "test2",
+        "strength": "9",
+        "category": "MD9"
+      },
+      {
+        "name": "test3",
+        "strength": "9",
+        "category": "MD9"
+      },
+      {
+        "name": "test4",
+        "strength": "9",
+        "category": "MD9"
+      },
+      {
+        "name": "test5",
+        "strength": "9",
+        "category": "MD9"
+      },
+      {
+        "name": "test1",
+        "strength": "9",
+        "category": "MD7"
+      },
+      {
+        "name": "test2",
+        "strength": "9",
+        "category": "MD7"
+      },
+      {
+        "name": "test3",
+        "strength": "9",
+        "category": "MD7"
+      },
+      {
+        "name": "test4",
+        "strength": "9",
+        "category": "MD7"
+      },
+      {
+        "name": "test5",
+        "strength": "9",
+        "category": "MD7"
+      }
+    ]
+  }
+]
