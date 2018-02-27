@@ -1,6 +1,6 @@
 [
   {
-    "type":"blind",
+    "type":"seed",
     "stage" : "group",
     "categories": [
       "MS4",
@@ -27,127 +27,127 @@
     "players": [
       {
         "name": "test1",
-        "strength": "1",
+        "strength": 1,
         "category": "MD9"
       },
       {
         "name": "test2",
-        "strength": "2",
+        "strength": 2,
         "category": "MD9"
       },
       {
         "name": "test3",
-        "strength": "3",
+        "strength": 3,
         "category": "MD9"
       },
       {
         "name": "test4",
-        "strength": "4",
+        "strength": 4,
         "category": "MD9"
       },
       {
         "name": "test5",
-        "strength": "5",
+        "strength": 5,
         "category": "MD9"
       },
       {
         "name": "test1",
-        "strength": "1",
+        "strength": 1,
         "category": "MD7"
       },
       {
         "name": "test2",
-        "strength": "2",
+        "strength": 2,
         "category": "MD7"
       },
       {
         "name": "test3",
-        "strength": "3",
+        "strength": 3,
         "category": "MD7"
       },
       {
         "name": "test4",
-        "strength": "4",
+        "strength": 4,
         "category": "MD7"
       },
       {
         "name": "test5",
-        "strength": "5",
+        "strength": 5,
         "category": "MD7"
       },
       {
         "name": "test6",
-        "strength": "1",
+        "strength": 6,
         "category": "MD7"
       },
       {
         "name": "test7",
-        "strength": "2",
+        "strength": 7,
         "category": "MD7"
       },
       {
         "name": "test8",
-        "strength": "3",
+        "strength": 8,
         "category": "MD7"
       },
       {
         "name": "test9",
-        "strength": "4",
+        "strength": 9,
         "category": "MD7"
       },
       {
         "name": "test10",
-        "strength": "5",
+        "strength": 10,
         "category": "MD7"
       },
       {
         "name": "test11",
-        "strength": "1",
+        "strength": 11,
         "category": "MD7"
       },
       {
         "name": "test12",
-        "strength": "2",
+        "strength": 12,
         "category": "MD7"
       },
       {
         "name": "test13",
-        "strength": "3",
+        "strength": 13,
         "category": "MD7"
       },
       {
         "name": "test14",
-        "strength": "4",
+        "strength": 14,
         "category": "MD7"
       },
       {
         "name": "test15",
-        "strength": "5",
+        "strength": 15,
         "category": "MD7"
       },
       {
         "name": "test16",
-        "strength": "1",
+        "strength": 16,
         "category": "MD7"
       },
       {
         "name": "test17",
-        "strength": "2",
+        "strength": 17,
         "category": "MD7"
       },
       {
         "name": "test18",
-        "strength": "3",
+        "strength": 18,
         "category": "MD7"
       },
       {
         "name": "test19",
-        "strength": "4",
+        "strength": 19,
         "category": "MD7"
       },
       {
         "name": "test20",
-        "strength": "5",
+        "strength": 20,
         "category": "MD7"
       }
     ]

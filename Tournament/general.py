@@ -1,6 +1,7 @@
 import json
 from pprint import pprint
 from random import shuffle
+from operator import itemgetter
 from itertools import repeat
 import math
 
@@ -46,16 +47,9 @@ def algorithm():
             placements.append(cat_players)
 
 
-def sortList(playerlist):
-    return playerlist
-
-
 def blindGroups(playerlist):
-    global stage_type
     shuffle(playerlist)
-    groups = []
     length = playerlist.__len__()
-    nrOfGroups = 0
     if length % 4 == 0 or length % 4 == 1:
         nrOfGroups = int(length / 4)
     else:
@@ -64,11 +58,17 @@ def blindGroups(playerlist):
 
 
 def seededGroups(playerlist):
-    global stage_type
-    return []
+    playerlist.sort(key=itemgetter("strength"))
+    length = playerlist.__len__()
+    if length % 4 == 0 or length % 4 == 1:
+        nrOfGroups = int(length / 4)
+    else:
+        nrOfGroups = int(math.ceil(length / 4))
+    return roundRobin(playerlist, nrOfGroups)
 
 
 def roundRobin(playerlist, nrOfGroups):
+    pprint(playerlist)
     groups = [[] for i in repeat(None, nrOfGroups)]
     player_iterable = iter(playerlist)
     currentGroup = 0
