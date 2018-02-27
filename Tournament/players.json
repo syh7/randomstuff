@@ -1,6 +1,7 @@
 [
   {
     "type":"blind",
+    "stage" : "group",
     "categories": [
       "MS4",
       "WS4",
@@ -26,52 +27,127 @@
     "players": [
       {
         "name": "test1",
-        "strength": "9",
+        "strength": "1",
         "category": "MD9"
       },
       {
         "name": "test2",
-        "strength": "9",
+        "strength": "2",
         "category": "MD9"
       },
       {
         "name": "test3",
-        "strength": "9",
+        "strength": "3",
         "category": "MD9"
       },
       {
         "name": "test4",
-        "strength": "9",
+        "strength": "4",
         "category": "MD9"
       },
       {
         "name": "test5",
-        "strength": "9",
+        "strength": "5",
         "category": "MD9"
       },
       {
         "name": "test1",
-        "strength": "9",
+        "strength": "1",
         "category": "MD7"
       },
       {
         "name": "test2",
-        "strength": "9",
+        "strength": "2",
         "category": "MD7"
       },
       {
         "name": "test3",
-        "strength": "9",
+        "strength": "3",
         "category": "MD7"
       },
       {
         "name": "test4",
-        "strength": "9",
+        "strength": "4",
         "category": "MD7"
       },
       {
         "name": "test5",
-        "strength": "9",
+        "strength": "5",
+        "category": "MD7"
+      },
+      {
+        "name": "test6",
+        "strength": "1",
+        "category": "MD7"
+      },
+      {
+        "name": "test7",
+        "strength": "2",
+        "category": "MD7"
+      },
+      {
+        "name": "test8",
+        "strength": "3",
+        "category": "MD7"
+      },
+      {
+        "name": "test9",
+        "strength": "4",
+        "category": "MD7"
+      },
+      {
+        "name": "test10",
+        "strength": "5",
+        "category": "MD7"
+      },
+      {
+        "name": "test11",
+        "strength": "1",
+        "category": "MD7"
+      },
+      {
+        "name": "test12",
+        "strength": "2",
+        "category": "MD7"
+      },
+      {
+        "name": "test13",
+        "strength": "3",
+        "category": "MD7"
+      },
+      {
+        "name": "test14",
+        "strength": "4",
+        "category": "MD7"
+      },
+      {
+        "name": "test15",
+        "strength": "5",
+        "category": "MD7"
+      },
+      {
+        "name": "test16",
+        "strength": "1",
+        "category": "MD7"
+      },
+      {
+        "name": "test17",
+        "strength": "2",
+        "category": "MD7"
+      },
+      {
+        "name": "test18",
+        "strength": "3",
+        "category": "MD7"
+      },
+      {
+        "name": "test19",
+        "strength": "4",
+        "category": "MD7"
+      },
+      {
+        "name": "test20",
+        "strength": "5",
         "category": "MD7"
       }
     ]
